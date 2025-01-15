@@ -29,7 +29,7 @@ jobs:
 
       - name: Upload Cypress Test Results (Optional)
         if: always()  # This ensures the upload step runs even if tests fail
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: cypress-test-results
           path: cypress/videos  # Upload videos of Cypress tests
