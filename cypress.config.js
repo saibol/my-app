@@ -1,6 +1,7 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  projectId: 'cg2vvh',
   component: {
     devServer: {
       framework: "create-react-app",
