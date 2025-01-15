@@ -3,18 +3,22 @@ name: Cypress Tests
 on:
   push:
     branches:
-      - main  # Trigger CI on push to the main branch (or any other branches you choose)
+      - main
   pull_request:
     branches:
-      - main  # Trigger CI on pull requests to the main branch
+      - main
 
 jobs:
   cypress-tests:
     runs-on: ubuntu-latest  # You can also use macos-latest or windows-latest
     
+    strategy:
+      matrix:
+        shard: [1, 2, 3, 4]  # Define the number of parallel shards you want to run
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Checks out the repository
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -24,12 +28,13 @@ jobs:
       - name: Install dependencies
         run: npm install  # Install dependencies using npm ci for a clean install
 
-      - name: Run Cypress Tests
-        run: npx cypress run  # Runs Cypress tests in headless mode
+      - name: Run Cypress Tests in Parallel
+        run: |
+          npx cypress run --record --key cc7e1148-9689-4fe6-97a0-035a8a50ed95 --parallel --ci-build-id ${{ github.run_id }} --group "Shard ${matrix.shard}" --spec "cypress/e2e/shard-${matrix.shard}/*.cy.js"  # Adjust path as needed
 
       - name: Upload Cypress Test Results (Optional)
         if: always()  # This ensures the upload step runs even if tests fail
         uses: actions/upload-artifact@v3
         with:
           name: cypress-test-results
-          path: cypress/videos  # Upload videos of Cypress tests
+          path: cypress/videos  # Upload videos of Cypress tests (or other artifacts like screenshots)
