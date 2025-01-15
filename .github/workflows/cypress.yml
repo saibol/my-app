@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Cypress Tests in Parallel
         run: |
-          npx cypress run --record --key cc7e1148-9689-4fe6-97a0-035a8a50ed95 --parallel --ci-build-id ${{ github.run_id }} --group "Shard ${matrix.shard}" --spec "cypress/e2e/shard-${matrix.shard}/*.cy.js"  # Adjust path as needed
+          npx cypress run --record --key cc7e1148-9689-4fe6-97a0-035a8a50ed95 --parallel --ci-build-id ${{ github.run_id }} --group "Shard ${{ matrix.shard }}" --spec "cypress/e2e/shard-${matrix.shard}/*.cy.js"  # Adjust path as needed
 
       - name: Upload Cypress Test Results (Optional)
         if: always()  # This ensures the upload step runs even if tests fail
