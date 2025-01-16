@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        shard: [1, 2, 3, 4]  # Define the number of parallel shards you want to run
+        shard: [1, 2, 3, 4, 5]  # Define the number of parallel shards you want to run
 
     steps:
       - name: Checkout code
