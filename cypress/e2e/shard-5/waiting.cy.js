@@ -16,6 +16,8 @@ context('Waiting', () => {
     cy.wait(1000)
   })
 
+
+  
   it('cy.wait() - wait for a specific route', () => {
     // Listen to GET to comments/1
     cy.intercept('GET', '**/comments/*').as('getComment')
