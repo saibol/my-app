@@ -37,7 +37,7 @@ jobs:
 
       - name: Upload Cypress Test Results (Optional)
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@latest
         with:
           name: cypress-test-results
           path: cypress/videos  # Adjust the path as needed
