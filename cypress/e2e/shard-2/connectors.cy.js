@@ -16,7 +16,7 @@ context('Connectors', () => {
   it('.its() - get properties on the current subject', () => {
     // https://on.cypress.io/its
     cy.get('.connectors-its-ul>li')
-      // calls the 'length' property yielding that value
+      // calls the 'length' property yielding that value sdf
       .its('length')
       .should('be.gt', 2)
   })
